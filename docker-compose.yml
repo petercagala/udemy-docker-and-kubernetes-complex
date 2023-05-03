@@ -1,5 +1,12 @@
 version: "3"
 services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "4000:80"
   postgress:
     image: "postgres:latest"
     environment:
@@ -33,7 +40,7 @@ services:
       dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
-      - /app/nodemodules
+      - /app/node_modules
       - ./worker:/app
     environment:
       - REDIS_HOST=redis
