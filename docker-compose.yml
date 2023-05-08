@@ -7,6 +7,9 @@ services:
       context: ./nginx
     ports:
       - "4050:80"
+    depends_on:
+      - api
+      - client
   postgress:
     image: "postgres:latest"
     environment:
