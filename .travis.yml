@@ -13,5 +13,11 @@ after_success:
   - docker build -t peterpan01/multi-nginx ./nginx
   - docker build -t peterpan01/multi-api ./api
   - docker build -t peterpan01/multi-worker ./worker
-
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push peterpan01/multi-client
+  - docker push peterpan01/multi-nginx
+  - docker push peterpan01/multi-api
+  - docker push peterpan01/multi-worker
 
